@@ -35,15 +35,7 @@ function checkAdminAccess() {
 
     if (adminClickCount >= 5) {
         adminClickCount = 0;
-        const isLoggedIn = localStorage.getItem('isAdminLoggedIn');
-        if (isLoggedIn === 'true') {
-            renderAdminManageCategories();
-            renderAdminManageList();
-            populateCategoryDropdown();
-            navigateTo('pageAdmin');
-        } else {
-            navigateTo('pageLogin');
-        }
+        navigateTo('pageAdmin');
     }
 }
 
