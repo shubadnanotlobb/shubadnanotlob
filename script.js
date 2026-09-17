@@ -29,42 +29,45 @@ onAuthStateChanged(auth, (user) => {
 });
 
 function checkAdminAccess() {
-  adminClickCount++;
-  clearTimeout(adminClickTimer);
-  adminClickTimer = setTimeout(() => { adminClickCount = 0; }, 1200);
+    adminClickCount++;
+    clearTimeout(adminClickTimer);
+    adminClickTimer = setTimeout(() => { adminClickCount = 0; }, 1200);
 
-  if (adminClickCount >= 6) {
-    adminClickCount = 0;
-    if (isAuthenticated || auth.currentUser) {
-      renderAdminManageCategories();
-      renderAdminManageList();
-      populateCategoryDropdown();
-      navigateTo('pageAdmin');
-    } else {
-      navigateTo('pageLogin');
+    if (adminClickCount >= 5) {
+        adminClickCount = 0;
+        const isLoggedIn = localStorage.getItem('isAdminLoggedIn');
+        if (isLoggedIn === 'true') {
+            renderAdminManageCategories();
+            renderAdminManageList();
+            populateCategoryDropdown();
+            navigateTo('pageAdmin');
+        } else {
+            navigateTo('pageLogin');
+        }
     }
-  }
 }
 
-function performAdminLogin() {
-  let email = document.getElementById('loginEmail').value.trim();
-  let password = document.getElementById('loginPassword').value.trim();
+async function performAdminLogin() {
+    let email = document.getElementById('loginEmail').value.trim();
+    let password = document.getElementById('loginPassword').value.trim();
 
-  if (!email || !password) {
-    alert("Please enter both email and password.");
-    return;
-  }
+    if (!email || !password) {
+        alert("Please enter both email and password.");
+        return;
+    }
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      document.getElementById('loginEmail').value = '';
-      document.getElementById('loginPassword').value = '';
-      renderAdminManageCategories();
-      renderAdminManageList();
-      populateCategoryDropdown();
-      navigateTo('pageAdmin');
-    })
-    .catch(err => alert("Access Denied: " + err.message));
+    if (email === 'mhmdalhor' && password === '@70725') {
+        localStorage.setItem('isAdminLoggedIn', 'true');
+        document.getElementById('loginEmail').value = '';
+        document.getElementById('loginPassword').value = '';
+        renderAdminManageCategories();
+        renderAdminManageList();
+        populateCategoryDropdown();
+        navigateTo('pageAdmin');
+        alert('تم تسجيل الدخول بنجاح');
+    } else {
+        alert('بيانات الدخول غير صحيحة');
+    }
 }
 
 function logoutAdmin() {
