@@ -567,14 +567,15 @@ window.openRestaurants = openRestaurants;
 window.filterCategories = filterCategories;
 window.filterRestaurants = filterRestaurants;
 window.goBack = goBack;
-// ربط دالة التنقل بالنطاق العام (Global Window Object) لتعمل مع onclick مباشرة
 window.openCategories = function() {
-    renderUserCategories();
+    // التنقل المباشر أولاً لنقل المستخدم فوراً لصفحة الأقسام
     navigateTo('pageCategories');
+    // جلب الأقسام وعرضها في الخلفية
+    renderUserCategories();
 };
 
 window.goBack = function() {
-    if (navigationHistory.length > 0) {
+    if (typeof navigationHistory !== 'undefined' && navigationHistory.length > 0) {
         navigateTo(navigationHistory.pop(), false);
     } else {
         navigateTo('pageHome', false);
