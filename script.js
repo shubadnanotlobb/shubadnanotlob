@@ -414,3 +414,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// ربط دقيق وشامل لجميع عناصر الـ HTML بالدوال
+window.navigateTo = navigateTo;
+window.goBack = goBack;
+window.openCategories = openCategories;
+window.openRestaurants = openRestaurants;
+window.checkAdminAccess = checkAdminAccess;
+window.performAdminLogin = performAdminLogin;
+window.logoutAdmin = logoutAdmin;
+window.saveCategoryToFirebase = saveCategoryToFirebase;
+window.resetCategoryForm = resetCategoryForm;
+window.deleteCategoryFromFirebase = deleteCategoryFromFirebase;
+window.saveRestaurantToFirebase = saveRestaurantToFirebase;
+window.resetAdminForm = resetAdminForm;
+window.deleteRestaurantFromFirebase = deleteRestaurantFromFirebase;
+window.filterCategories = filterCategories;
+window.filterRestaurants = filterRestaurants;
+
+// إجبار الاستجابة للضغط على العناصر الرئيسية عند التحميل
+document.addEventListener('DOMContentLoaded', () => {
+    // ربط ضغطة كرت المنطقة
+    const regionCard = document.querySelector('.region-card');
+    if (regionCard) {
+        regionCard.onclick = () => window.openCategories();
+    }
+    
+    // ربط ضغطة الفوتر للادمن
+    const footer = document.querySelector('.app-footer');
+    if (footer) {
+        footer.onclick = () => window.checkAdminAccess();
+    }
+
+    // ربط سهم العودة
+    const backBtn = document.getElementById('backBtn');
+    if (backBtn) {
+        backBtn.onclick = () => window.goBack();
+    }
+});
+
+
