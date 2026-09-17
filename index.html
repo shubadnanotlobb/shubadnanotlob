@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Shu Badna Notlob - شو بدنا نطلب</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+<!-- App Header -->
+<header class="app-header">
+<button class="back-btn" id="backBtn" onclick="goBack()" aria-label="Back">
+<svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+</button>
+
+<div class="header-title" id="headerTitleText">شو بدنا نطلب</div>
+
+<div class="header-badge">
+<div class="pulse-dot"></div>
+<span>مباشر</span>
+</div>
+</header>
+
+<!-- Default Logo Section (Home View) -->
+<div class="logo-section" id="defaultLogoSection">
+<div class="logo-circle-glow">
+<div class="logo-circle">
+<img src="assets/logo.png" alt="Shu Badna Notlob Logo" class="logo-img" onerror="this.src='https://lh3.googleusercontent.com/d/1L9nk1AI0ZIUn5c9WFz0gBv_xotomyujO'">
+</div>
+</div>
+<h1 class="brand-text">Shu Badna <span>Notlob</span></h1>
+<p class="brand-slogan">دليلك الأول للمطاعم والخدمات السريعة</p>
+</div>
+
+<!-- Categories Header Section (Categories View Header) -->
+<div class="categories-header-section" id="categoriesHeaderSection">
+<div class="logo-circle small">
+<img src="assets/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://lh3.googleusercontent.com/d/1L9nk1AI0ZIUn5c9WFz0gBv_xotomyujO'">
+</div>
+<div class="brand-text">Shu Badna <span>Notlob</span></div>
+</div>
+
+<!-- VIEW 1: PAGE HOME -->
+<div class="view-page active" id="pageHome">
+<div class="region-card" onclick="openCategories()">
+<img src="https://lh3.googleusercontent.com/d/1doCOmMqmtbPIMdy4ZnvUx1pIsI3csgjl" alt="Dahyeh Region">
+<div class="region-overlay">
+<span class="region-badge">منطقة الضاحية</span>
+<h2 class="region-title">EL DAHYE</h2>
+<p class="region-subtitle">إضغط لتصفح كافة المطاعم والأقسام</p>
+</div>
+</div>
+
+<div class="app-features-strip">
+<div class="feature-pill">خدمة عملاء</div>
+<div class="feature-pill">خريطة مباشرة</div>
+<div class="feature-pill">تواصل واتساب</div>
+</div>
+
+<br>
+<div class="feature-pill" style="text-align: center; font-weight: 800; color: var(--primary-teal);">
+اللقمة الطيبة بتبلش من هون
+</div>
+</div>
+
+<!-- VIEW 2: PAGE CATEGORIES -->
+<div class="view-page" id="pageCategories">
+<div class="search-box">
+<input type="text" id="categoriesSearchInput" class="search-input" placeholder="ابحث عن قسم معين..." oninput="filterCategories()">
+<div class="search-icon">
+<svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+</div>
+</div>
+
+<div class="section-header-box">
+<div class="section-question">ماذا تحب أن تأكل اليوم؟</div>
+</div>
+
+<div class="categories-grid" id="categoriesGridContainer">
+<!-- Dynmaic Content -->
+</div>
+</div>
+
+<!-- VIEW 3: PAGE RESTAURANTS -->
+<div class="view-page" id="pageRestaurants">
+<div class="category-hero">
+<img id="categoryHeroImg" src="" alt="Category Banner">
+<div class="category-hero-overlay"></div>
+<div class="category-hero-title" id="categoryHeroTitle">المطاعم</div>
+</div>
+
+<div class="search-box">
+<input type="text" id="restaurantsSearchInput" class="search-input" placeholder="ابحث عن مطعم محدد..." oninput="filterRestaurants()">
+<div class="search-icon">
+<svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+</div>
+</div>
+
+<div class="restaurants-grid" id="restaurantsListContainer">
+<!-- Dynamic Content -->
+</div>
+</div>
+
+<!-- VIEW 4: RESTAURANT PROFILE -->
+<div class="view-page" id="pageRestProfile">
+<div class="profile-hero">
+<img id="profileLogo" src="" alt="Restaurant Logo">
+<h2 id="profileName">اسم المطعم</h2>
+<p id="profileDesc">وصف المطعم</p>
+</div>
+
+<div class="section-header-box">
+<div class="section-question">معرض الصور • Gallery</div>
+</div>
+
+<div class="gallery-grid" id="profileGalleryContainer">
+<!-- Dynamic Content -->
+</div>
+
+<div class="profile-actions-bottom">
+<a id="profileMenuBtn" href="#" target="_blank" class="action-btn btn-menu">MENU</a>
+<a id="profileContactBtn" href="#" target="_blank" class="action-btn btn-contact">CONTACT</a>
+<a id="profileLocationBtn" href="#" target="_blank" class="action-btn btn-location">LOCATION</a>
+</div>
+</div>
+
+<!-- VIEW 5: LOGIN PAGE -->
+<div class="view-page" id="pageLogin">
+<div class="admin-box glass-panel">
+<h3 style="margin-bottom: 15px; color: var(--primary-teal); font-size: 16px;">Admin Authentication</h3>
+<div class="admin-form-group">
+<label>Email Address</label>
+<input type="email" id="loginEmail" placeholder="admin@shubadnanotlob.com">
+</div>
+<div class="admin-form-group">
+<label>Password</label>
+<input type="password" id="loginPassword" placeholder="••••••••">
+</div>
+<button class="admin-btn" onclick="performAdminLogin()">Login to Dashboard</button>
+</div>
+</div>
+
+<!-- VIEW 6: ADMIN DASHBOARD -->
+<div class="view-page" id="pageAdmin">
+
+<!-- CATEGORY MANAGEMENT -->
+<div class="admin-box glass-panel">
+<h3 id="categoryFormTitle" style="color: var(--primary-teal); font-size: 15px; margin-bottom: 12px;">Add / Edit Category</h3>
+<input type="hidden" id="editCatDocId">
+<div class="admin-form-group">
+<label>Category Name (Arabic)</label>
+<input type="text" id="adminCatAr" placeholder="مثال: سناك ومأكولات سريعة">
+</div>
+<div class="admin-form-group">
+<label>Category Name (English)</label>
+<input type="text" id="adminCatEn" placeholder="e.g. Snack & Fast Food">
+</div>
+<div class="admin-form-group">
+<label>Category Image URL</label>
+<input type="text" id="adminCatImg" placeholder="https://images.unsplash.com/...">
+</div>
+<div style="display: flex; gap: 8px;">
+<button class="admin-btn" onclick="saveCategoryToFirebase()">Save Category</button>
+<button class="admin-btn" style="background: #777;" onclick="resetCategoryForm()">Reset</button>
+</div>
+<h4 style="color: var(--primary-teal); font-size: 13px; margin-top: 15px; margin-bottom: 10px;">Active Categories List</h4>
+<div id="adminManageCategoriesContainer"></div>
+</div>
+
+<!-- RESTAURANT MANAGEMENT -->
+<div class="admin-box glass-panel">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+<h3 id="formTitle" style="color: var(--primary-teal); font-size: 15px;">Add New Restaurant</h3>
+<button class="admin-btn admin-btn-logout" style="width: auto; padding: 6px 12px; font-size: 11px; margin-top: 0;" onclick="logoutAdmin()">Logout</button>
+</div>
+<input type="hidden" id="editDocId">
+<div class="admin-form-group">
+<label>Category</label>
+<select id="adminCategory"></select>
+</div>
+<div class="admin-form-group">
+<label>Restaurant Name</label>
+<input type="text" id="adminName" placeholder="e.g. Gorella Food Truck">
+</div>
+<div class="admin-form-group">
+<label>Description / Tagline</label>
+<input type="text" id="adminDesc" placeholder="e.g. Best Burgers in Town">
+</div>
+<div class="admin-form-group">
+<label>Logo URL (Direct Image Link)</label>
+<input type="text" id="adminLogo" placeholder="https://lh3.googleusercontent.com/d/...">
+</div>
+<div class="admin-form-group">
+<label>Gallery Images (URLs separated by commas)</label>
+<input type="text" id="adminGallery" placeholder="https://img1.jpg, https://img2.jpg">
+</div>
+<div class="admin-form-group">
+<label>WhatsApp Number (without +)</label>
+<input type="text" id="adminPhone" placeholder="96170725668">
+</div>
+<div class="admin-form-group">
+<label>Menu Link (PDF or URL)</label>
+<input type="text" id="adminMenu" placeholder="https://...">
+</div>
+<div class="admin-form-group">
+<label>Google Maps Location Link</label>
+<input type="text" id="adminMap" placeholder="https://maps.app.goo.gl/...">
+</div>
+<div style="display: flex; gap: 8px;">
+<button class="admin-btn" onclick="saveRestaurantToFirebase()">Save Restaurant</button>
+<button class="admin-btn" style="background: #777;" onclick="resetAdminForm()">Reset</button>
+</div>
+</div>
+
+<!-- Active Restaurants Control List -->
+<div class="admin-box glass-panel">
+<h4 style="color: var(--primary-teal); font-size: 13px; margin-bottom: 10px;">Active Firebase Restaurants</h4>
+<div id="adminManageListContainer"></div>
+</div>
+</div>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/96170725668" target="_blank" class="floating-whatsapp" aria-label="Contact WhatsApp">
+<svg viewBox="0 0 24 24"><path d="M12.031 0C5.39 0 0 5.39 0 12.031c0 2.122.553 4.195 1.607 6.013L0 24l6.147-1.612a11.97 11.97 0 005.884 1.533h.005c6.64 0 12.03-5.39 12.03-12.031C24.066 5.39 18.671 0 12.031 0zm0 22.028h-.004c-1.8 0-3.564-.484-5.112-1.403l-.367-.218-3.799.996 1.014-3.702-.24-.381A9.972 9.972 0 012.036 12.03c0-5.511 4.484-9.995 9.995-9.995 5.511 0 9.995 4.484 9.995 9.995 0 5.511-4.484 9.998-9.995 9.998z"/></svg>
+</a>
+
+<!-- Footer -->
+<footer class="app-footer" onclick="checkAdminAccess()">
+Shu Badna Notlob 2026 © جميع الحقوق محفوظة
+</footer>
+
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
