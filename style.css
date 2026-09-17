@@ -1,0 +1,602 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Montserrat:wght@500;700;800&display=swap');
+
+:root {
+--primary-teal: #0f4c5c;
+--teal-light: #e5f1f4;
+--accent-orange: #fb8b24;
+--bg-color: #f7f9fa;
+--text-dark: #1f2937;
+--text-muted: #6b7280;
+--white: #ffffff;
+--glass-bg: rgba(255, 255, 255, 0.85);
+--glass-border: rgba(15, 76, 92, 0.08);
+--shadow-sm: 0 4px 15px rgba(0,0,0,0.03);
+--shadow-md: 0 8px 25px rgba(15, 76, 92, 0.08);
+--shadow-lg: 0 12px 35px rgba(15, 76, 92, 0.12);
+--radius-lg: 20px;
+--radius-md: 14px;
+--radius-sm: 8px;
+}
+
+• {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+-webkit-tap-highlight-color: transparent;
+font-family: 'Cairo', sans-serif;
+}
+
+body {
+background-color: #eef2f5;
+color: var(--text-dark);
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+direction: rtl;
+}
+
+.app-container {
+width: 100%;
+max-width: 430px;
+height: 100vh;
+max-height: 932px;
+background-color: var(--bg-color);
+position: relative;
+overflow-y: auto;
+overflow-x: hidden;
+box-shadow: 0 0 50px rgba(0,0,0,0.1);
+display: flex;
+flex-direction: column;
+}
+
+@media (min-width: 431px) {
+.app-container {
+height: 90vh;
+border-radius: 35px;
+border: 8px solid #ffffff;
+}
+}
+
+/* Header */
+.app-header {
+position: sticky;
+top: 0;
+z-index: 100;
+background: var(--glass-bg);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+padding: 12px 18px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+border-bottom: 1px solid var(--glass-border);
+}
+
+.back-btn {
+background: var(--white);
+border: 1px solid var(--glass-border);
+width: 38px;
+height: 38px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+box-shadow: var(--shadow-sm);
+transition: all 0.2s ease;
+opacity: 0;
+pointer-events: none;
+}
+
+.back-btn.visible {
+opacity: 1 !important;
+pointer-events: auto !important;
+}
+
+.back-btn svg {
+width: 20px;
+height: 20px;
+stroke: var(--primary-teal);
+stroke-width: 2.5;
+fill: none;
+transform: scaleX(-1);
+}
+
+.header-title {
+font-size: 15px;
+font-weight: 700;
+color: var(--primary-teal);
+}
+
+.header-badge {
+background: #e6f4ea;
+color: #137333;
+font-size: 11px;
+font-weight: 700;
+padding: 4px 10px;
+border-radius: 20px;
+display: flex;
+align-items: center;
+gap: 5px;
+}
+
+.pulse-dot {
+width: 6px;
+height: 6px;
+background-color: #137333;
+border-radius: 50%;
+animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(19, 115, 51, 0.7); }
+70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(19, 115, 51, 0); }
+100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(19, 115, 51, 0); }
+}
+
+/* Logo Section */
+.logo-section {
+padding: 25px 20px 15px;
+text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.logo-circle-glow {
+position: relative;
+margin-bottom: 12px;
+}
+
+.logo-circle-glow::after {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 80px;
+height: 80px;
+background: var(--primary-teal);
+opacity: 0.15;
+filter: blur(15px);
+border-radius: 50%;
+z-index: 1;
+}
+
+.logo-circle {
+width: 75px;
+height: 75px;
+border-radius: 50%;
+background: #fff;
+border: 3px solid var(--white);
+box-shadow: var(--shadow-md);
+overflow: hidden;
+position: relative;
+z-index: 2;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.logo-circle.small {
+width: 45px;
+height: 45px;
+}
+
+.logo-img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.brand-text {
+font-family: 'Montserrat', 'Cairo', sans-serif;
+font-size: 22px;
+font-weight: 800;
+color: var(--primary-teal);
+letter-spacing: -0.5px;
+}
+
+.brand-text span {
+color: var(--accent-orange);
+}
+
+.brand-slogan {
+font-size: 12px;
+color: var(--text-muted);
+margin-top: 2px;
+}
+
+.categories-header-section {
+display: none;
+align-items: center;
+justify-content: center;
+gap: 12px;
+padding: 15px;
+border-bottom: 1px solid var(--glass-border);
+}
+
+/* Views & Pages */
+.view-page {
+display: none;
+padding: 15px 18px 80px;
+flex: 1;
+}
+
+.view-page.active {
+display: block;
+animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(6px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* Region Card */
+.region-card {
+position: relative;
+border-radius: var(--radius-lg);
+overflow: hidden;
+box-shadow: var(--shadow-md);
+margin-bottom: 18px;
+cursor: pointer;
+height: 200px;
+}
+
+.region-card img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.region-overlay {
+position: absolute;
+inset: 0;
+background: linear-gradient(180deg, rgba(0,0,0,0) 20%, rgba(15, 76, 92, 0.9) 100%);
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+padding: 18px;
+color: var(--white);
+}
+
+.region-badge {
+align-self: flex-start;
+background: rgba(255, 255, 255, 0.2);
+backdrop-filter: blur(5px);
+padding: 3px 10px;
+border-radius: 12px;
+font-size: 10px;
+margin-bottom: 6px;
+}
+
+.region-title {
+font-family: 'Montserrat', sans-serif;
+font-size: 24px;
+font-weight: 800;
+line-height: 1.1;
+}
+
+.region-subtitle {
+font-size: 11px;
+opacity: 0.85;
+}
+
+/* Features Strip */
+.app-features-strip {
+display: flex;
+gap: 8px;
+overflow-x: auto;
+padding-bottom: 5px;
+margin-bottom: 15px;
+}
+
+.feature-pill {
+flex: 1;
+background: var(--white);
+border: 1px solid var(--glass-border);
+padding: 10px;
+border-radius: var(--radius-md);
+font-size: 11px;
+font-weight: 600;
+color: var(--text-dark);
+text-align: center;
+box-shadow: var(--shadow-sm);
+white-space: nowrap;
+}
+
+/* Search Box */
+.search-box {
+position: relative;
+margin-bottom: 15px;
+}
+
+.search-input {
+width: 100%;
+background: var(--white);
+border: 1px solid var(--glass-border);
+padding: 12px 40px 12px 15px;
+border-radius: var(--radius-md);
+font-size: 13px;
+color: var(--text-dark);
+outline: none;
+box-shadow: var(--shadow-sm);
+}
+
+.search-icon {
+position: absolute;
+right: 12px;
+top: 50%;
+transform: translateY(-50%);
+}
+
+.search-icon svg {
+width: 18px;
+height: 18px;
+stroke: var(--text-muted);
+fill: none;
+stroke-width: 2;
+}
+
+.section-header-box {
+margin-bottom: 12px;
+}
+
+.section-question {
+font-size: 14px;
+font-weight: 700;
+color: var(--primary-teal);
+}
+
+/* Categories Grid */
+.categories-grid {
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.category-card {
+background: var(--white);
+border-radius: var(--radius-lg);
+overflow: hidden;
+box-shadow: var(--shadow-sm);
+border: 1px solid var(--glass-border);
+display: flex;
+height: 100px;
+cursor: pointer;
+transition: transform 0.2s ease;
+}
+
+.category-card img {
+width: 120px;
+height: 100%;
+object-fit: cover;
+}
+
+.cat-info {
+flex: 1;
+padding: 12px 15px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.cat-title-ar {
+font-size: 15px;
+font-weight: 700;
+color: var(--text-dark);
+}
+
+.cat-title-en {
+font-family: 'Montserrat', sans-serif;
+font-size: 11px;
+color: var(--text-muted);
+}
+
+/* Restaurants List */
+.category-hero {
+position: relative;
+height: 140px;
+border-radius: var(--radius-lg);
+overflow: hidden;
+margin-bottom: 15px;
+}
+
+.category-hero img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.category-hero-overlay {
+position: absolute;
+inset: 0;
+background: rgba(15, 76, 92, 0.4);
+}
+
+.category-hero-title {
+position: absolute;
+bottom: 15px;
+right: 15px;
+color: var(--white);
+font-size: 20px;
+font-weight: 800;
+}
+
+.restaurants-grid {
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.restaurant-card {
+background: var(--white);
+border-radius: var(--radius-md);
+padding: 12px;
+display: flex;
+align-items: center;
+gap: 12px;
+box-shadow: var(--shadow-sm);
+border: 1px solid var(--glass-border);
+cursor: pointer;
+}
+
+.rest-logo {
+width: 55px;
+height: 55px;
+border-radius: 12px;
+object-fit: cover;
+}
+
+.rest-details {
+flex: 1;
+}
+
+.rest-name {
+font-size: 14px;
+font-weight: 700;
+color: var(--text-dark);
+}
+
+.rest-desc {
+font-size: 11px;
+color: var(--text-muted);
+}
+
+/* Restaurant Profile */
+.profile-hero {
+text-align: center;
+padding: 10px 0 20px;
+}
+
+.profile-hero img {
+width: 85px;
+height: 85px;
+border-radius: 50%;
+object-fit: cover;
+border: 3px solid var(--white);
+box-shadow: var(--shadow-md);
+margin-bottom: 10px;
+}
+
+.gallery-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 10px;
+padding-bottom: 90px !important;
+}
+
+.gallery-item {
+height: 120px;
+border-radius: var(--radius-md);
+overflow: hidden;
+}
+
+.gallery-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.profile-actions-bottom {
+position: fixed;
+bottom: 15px;
+left: 50%;
+transform: translateX(-50%);
+width: calc(100% - 36px);
+max-width: 394px;
+display: flex;
+gap: 8px;
+z-index: 90;
+}
+
+.action-btn {
+flex: 1;
+padding: 12px 5px;
+border-radius: var(--radius-md);
+text-align: center;
+text-decoration: none;
+font-size: 11px;
+font-weight: 800;
+color: var(--white);
+box-shadow: var(--shadow-md);
+}
+
+.btn-menu { background: var(--primary-teal); }
+.btn-contact { background: #25D366; }
+.btn-location { background: var(--accent-orange); }
+
+/* Admin Section */
+.glass-panel {
+background: var(--white);
+border-radius: var(--radius-lg);
+padding: 15px;
+border: 1px solid var(--glass-border);
+box-shadow: var(--shadow-sm);
+margin-bottom: 15px;
+}
+
+.admin-form-group {
+margin-bottom: 10px;
+}
+
+.admin-form-group label {
+display: block;
+font-size: 11px;
+font-weight: 700;
+margin-bottom: 4px;
+}
+
+.admin-form-group input, .admin-form-group select {
+width: 100%;
+padding: 8px 10px;
+border: 1px solid var(--glass-border);
+border-radius: var(--radius-sm);
+font-size: 12px;
+}
+
+.admin-btn {
+width: 100%;
+background: var(--primary-teal);
+color: var(--white);
+border: none;
+padding: 10px;
+border-radius: var(--radius-sm);
+font-weight: 700;
+cursor: pointer;
+margin-top: 5px;
+}
+
+/* Floating Elements */
+.floating-whatsapp {
+position: fixed;
+bottom: 20px;
+right: 20px;
+width: 48px;
+height: 48px;
+background-color: #25D366;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+z-index: 80;
+}
+
+.floating-whatsapp svg {
+width: 26px;
+height: 26px;
+fill: #fff;
+}
+
+.app-footer {
+text-align: center;
+padding: 15px;
+font-size: 10px;
+color: var(--text-muted);
+border-top: 1px solid var(--glass-border);
+margin-top: auto;
+cursor: pointer;
+}
