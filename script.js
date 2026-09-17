@@ -567,25 +567,20 @@ window.openRestaurants = openRestaurants;
 window.filterCategories = filterCategories;
 window.filterRestaurants = filterRestaurants;
 window.goBack = goBack;
-// ربط دالة التنقل بالنطاق العام (Global Window Object) لتستجيب لأحداث onclick في HTML
+// ربط دالة التنقل بالنطاق العام (Global Window Object) لتعمل مع onclick مباشرة
 window.openCategories = function() {
+    renderUserCategories();
     navigateTo('pageCategories');
 };
 
 window.goBack = function() {
-    if (typeof goBack === 'function') {
-        goBack();
+    if (navigationHistory.length > 0) {
+        navigateTo(navigationHistory.pop(), false);
     } else {
-        navigateTo('pageHome');
+        navigateTo('pageHome', false);
     }
 };
 
-// التأكد من ربط الضغط على كرت المنطقة تلقائياً فور تحميل الصفحة
-document.addEventListener('DOMContentLoaded', () => {
-    const regionCard = document.querySelector('.region-card');
-    if (regionCard) {
-        regionCard.addEventListener('click', () => {
-            navigateTo('pageCategories');
-        });
-    }
-});
+window.checkAdminAccess = checkAdminAccess;
+window.performAdminLogin = performAdminLogin;
+window.logoutAdmin = logoutAdmin;
