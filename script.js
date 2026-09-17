@@ -569,12 +569,15 @@ window.filterRestaurants = filterRestaurants;
 window.goBack = goBack;
 // ربط دالة التنقل بالنطاق العام (Global Window Object) لتستجيب لأحداث onclick في HTML
 window.openCategories = function() {
-    showView('pageCategories');
+    navigateTo('pageCategories');
 };
 
 window.goBack = function() {
-    // العودة للصفحة الرئيسية إذا كنا في الأقسام
-    showView('pageHome');
+    if (typeof goBack === 'function') {
+        goBack();
+    } else {
+        navigateTo('pageHome');
+    }
 };
 
 // التأكد من ربط الضغط على كرت المنطقة تلقائياً فور تحميل الصفحة
@@ -582,9 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const regionCard = document.querySelector('.region-card');
     if (regionCard) {
         regionCard.addEventListener('click', () => {
-            if (typeof showView === 'function') {
-                showView('pageCategories');
-            }
+            navigateTo('pageCategories');
         });
     }
 });
