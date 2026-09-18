@@ -1,0 +1,440 @@
+:root {
+    --primary-teal: #008080;
+    --dark-teal: #004d4d;
+    --accent-gold: #ffb703;
+    --bg-light: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-dark: #2b2b2b;
+    --text-muted: #666666;
+    --border-radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    direction: rtl;
+    min-height: 100vh;
+}
+
+.app-container {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #ffffff;
+    min-height: 100vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    position: relative;
+    padding-bottom: 30px;
+    pointer-events: auto;
+}
+
+/* App Header Header */
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* تنسيق زر السهم لضمان بروزه وإمكانية الضغط عليه */
+.back-btn {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    color: var(--text-dark);
+    touch-action: manipulation;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.back-btn:active {
+    background-color: #f0f0f0;
+}
+
+.back-btn svg {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.header-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-teal);
+}
+
+.header-badge {
+    background: #e6f4ea;
+    color: #137333;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #137333;
+    border-radius: 50%;
+}
+
+/* Logo & Branding */
+.logo-section {
+    padding: 25px 20px 15px 20px;
+    text-align: center;
+}
+
+.logo-circle-glow {
+    display: inline-block;
+    padding: 5px;
+    background: rgba(0, 128, 128, 0.1);
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.logo-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #fff;
+}
+
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brand-text {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.brand-text span {
+    color: var(--primary-teal);
+}
+
+.brand-slogan {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* Pages Control */
+.view-page {
+    padding: 15px 20px;
+    display: none;
+}
+
+.view-page.active {
+    display: block;
+}
+
+.region-card {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    height: 180px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    touch-action: manipulation;
+}
+
+.region-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.region-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 15px;
+    color: #ffffff;
+}
+
+.region-badge {
+    background: var(--primary-teal);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    width: fit-content;
+    margin-bottom: 5px;
+}
+
+.region-title {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.region-subtitle {
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+.app-features-strip {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    gap: 8px;
+}
+
+.feature-pill {
+    flex: 1;
+    background: #f0f4f4;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    text-align: center;
+    color: var(--dark-teal);
+    font-weight: 600;
+}
+
+/* Cards & Grids */
+.categories-grid, .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.category-card, .restaurant-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: pointer;
+    touch-action: manipulation;
+    user-select: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.category-card:active, .restaurant-card:active {
+    transform: scale(0.98);
+}
+
+.category-card img, .restaurant-card img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+}
+
+.category-card .category-title {
+    font-size: 13px;
+    padding: 10px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.restaurant-info {
+    padding: 10px;
+}
+
+.restaurant-info h3 {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.restaurant-info p {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* Search Input */
+.search-box {
+    margin-bottom: 15px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 12px;
+    outline: none;
+}
+
+/* Restaurant Profile */
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-teal);
+    margin-bottom: 10px;
+}
+
+.profile-title {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.profile-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ffffff;
+    touch-action: manipulation;
+}
+
+.btn-menu { background-color: var(--primary-teal); }
+.btn-contact { background-color: #25d366; }
+.btn-location { background-color: #ea4335; }
+
+.gallery-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.profile-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.profile-gallery img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Admin Styles */
+.admin-box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.admin-form-group {
+    margin-bottom: 12px;
+}
+
+.admin-form-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.admin-form-group input, .admin-form-group select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 12px;
+    outline: none;
+}
+
+.upload-status {
+    font-size: 11px;
+    color: var(--primary-teal);
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.admin-btn {
+    width: 100%;
+    background: var(--primary-teal);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.admin-btn-logout {
+    background: #d9534f;
+}
+
+/* Floating WhatsApp */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 45px;
+    height: 45px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.floating-whatsapp svg {
+    width: 25px;
+    height: 25px;
+    fill: #ffffff;
+}
+
+/* Footer */
+.app-footer {
+    text-align: center;
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 20px;
+    cursor: pointer;
+    touch-action: manipulation;
+}
