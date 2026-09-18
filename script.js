@@ -76,16 +76,12 @@ function performAdminLogin() {
     const userInput = document.getElementById('loginUsername') || document.getElementById('loginEmail');
     const passInput = document.getElementById('loginPassword');
 
-    // ضع اسم المستخدم وكلمة المرور بين التنصيص
+    // اسم المستخدم وكلمة المرور الجديدة
     const correctUsername = "admin";
     const correctPassword = "admin70"; 
 
-    // جلب القيم وتنظيفها من أي مسافات زائدة في البداية أو النهاية
     const enterUser = userInput ? userInput.value.trim() : '';
     const enterPass = passInput ? passInput.value.trim() : '';
-
-    // طباعة القيم في الـ Console للتأكد منها أثناء التجربة
-    console.log("المدخلات:", enterUser, enterPass);
 
     if (enterUser.toLowerCase() === correctUsername.toLowerCase() && enterPass === correctPassword) {
         navigateTo('pageAdmin');
