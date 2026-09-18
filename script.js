@@ -544,3 +544,29 @@ window.filterCategories = filterCategories;
 window.filterRestaurants = filterRestaurants;
 window.openRestaurantsByCategory = openRestaurantsByCategory;
 window.openRestaurantProfile = openRestaurantProfile;
+// ربط جميع الدوال بالنافذة العامة لضمان عمل onclick في HTML على اللابتوب والهاتف
+window.showPage = showPage;
+window.goBack = goBack;
+window.openCategories = openCategories;
+window.resetCategoryForm = resetCategoryForm;
+window.saveCategoryToFirebase = saveCategoryToFirebase;
+window.editCategory = editCategory;
+window.deleteCategoryFromFirebase = deleteCategoryFromFirebase;
+window.resetAdminForm = resetAdminForm;
+window.saveRestaurantToFirebase = saveRestaurantToFirebase;
+window.editRestaurant = editRestaurant;
+window.deleteRestaurantFromFirebase = deleteRestaurantFromFirebase;
+window.checkAdminAccess = checkAdminAccess;
+window.performAdminLogin = performAdminLogin;
+window.logoutAdmin = logoutAdmin;
+window.filterCategories = filterCategories;
+window.filterRestaurants = filterRestaurants;
+window.openRestaurantsByCategory = openRestaurantsByCategory;
+window.openRestaurantProfile = openRestaurantProfile;
+
+// تشغيل العرض الافتراضي فور تحميل الصفحة
+document.addEventListener('DOMContentLoaded', () => {
+    listenToCategories();
+    listenToRestaurants();
+    showPage('pageHome'); // إظهار الصفحة الرئيسية وتفعيل أزرارها
+});
