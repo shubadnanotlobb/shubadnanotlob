@@ -235,7 +235,8 @@
     </a>
 
    <!-- Footer يدعم الضغط على الكمبيوتر واللمس على جميع الهواتف -->
-<footer class="app-footer" onclick="checkAdminAccess()" ontouchstart="checkAdminAccess()" style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; padding: 15px 10px; font-size: 11px; color: #666; background: #ffffff; cursor: pointer; border-top: 1px solid #eee; z-index: 99999; -webkit-tap-highlight-color: transparent;">
+<!-- Footer محمي ومخصص للهواتف والكمبيوتر -->
+<footer class="app-footer" id="mainAppFooter" style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; padding: 15px 10px; font-size: 11px; color: #666; background: #ffffff; cursor: pointer; border-top: 1px solid #eee; z-index: 99999; pointer-events: auto;">
     Shu Badna Notlob 2026 © جميع الحقوق محفوظة
 </footer>
 </div>
