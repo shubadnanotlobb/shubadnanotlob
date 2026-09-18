@@ -108,7 +108,17 @@ font-size: 15px;
 font-weight: 700;
 color: var(--primary-teal);
 }
-
+.back-btn {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+}
 .header-badge {
 background: #e6f4ea;
 color: #137333;
