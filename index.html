@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل المطاعم والأقسام</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- App Header -->
+        <header class="app-header">
+            <button id="backBtn" class="back-btn" onclick="window.goBack()" style="display: none;">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+            <div class="header-title">تطبيق دليل المطاعم</div>
+            <div class="header-badge">
+                <span class="pulse-dot"></span> مباشر
+            </div>
+        </header>
+
+        <!-- Page 1: Home / Regions -->
+        <div id="pageHome" class="view-page active">
+            <div class="logo-section">
+                <div class="logo-circle-glow">
+                    <div class="logo-circle">
+                        <img src="https://via.placeholder.com/70" alt="Logo" class="logo-img">
+                    </div>
+                </div>
+                <div class="brand-text">دليل <span>المطاعم</span></div>
+                <div class="brand-slogan">اختر المنطقة للبدء بالتصفح</div>
+            </div>
+
+            <div class="region-card" onclick="window.openCategories()">
+                <img src="https://via.placeholder.com/400x180" alt="المنطقة">
+                <div class="region-overlay">
+                    <span class="region-badge">المنطقة الرئيسية</span>
+                    <div class="region-title">استعرض المطاعم والأقسام</div>
+                    <div class="region-subtitle">اضغط هنا للاطلاع على جميع الكافيهات والمطاعم</div>
+                </div>
+            </div>
+
+            <div class="app-features-strip">
+                <div class="feature-pill">منيو إلكتروني</div>
+                <div class="feature-pill">تواصل واتساب</div>
+                <div class="feature-pill">خرائط الملاحة</div>
+            </div>
+        </div>
+
+        <!-- Page 2: Categories -->
+        <div id="pageCategories" class="view-page">
+            <div class="search-box">
+                <input type="text" id="categoriesSearchInput" class="search-input" placeholder="بحث عن قسم..." oninput="window.filterCategories()">
+            </div>
+            <div id="categoriesGridContainer" class="categories-grid">
+                <!-- يتم تحميل الأقسام ديناميكياً -->
+            </div>
+        </div>
+
+        <!-- Page 3: Restaurants List -->
+        <div id="pageRestaurants" class="view-page">
+            <div class="categories-header-section" style="margin-bottom: 15px;">
+                <img id="categoryHeroImg" src="https://via.placeholder.com/400x150" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
+            </div>
+            <h2 id="categoryHeroTitle" style="font-size: 16px; margin-bottom: 10px;">المطاعم</h2>
+            
+            <div class="search-box">
+                <input type="text" id="restaurantsSearchInput" class="search-input" placeholder="بحث عن مطعم..." oninput="window.filterRestaurants()">
+            </div>
+
+            <div id="restaurantsListContainer" class="restaurants-grid">
+                <!-- يتم تحميل المطاعم ديناميكياً -->
+            </div>
+        </div>
+
+        <!-- Page 4: Restaurant Profile -->
+        <div id="pageRestProfile" class="view-page">
+            <div class="profile-header">
+                <img id="profileLogo" src="" class="profile-logo" alt="Logo">
+                <h2 id="profileName" class="profile-title"></h2>
+                <p id="profileDesc" class="profile-desc"></p>
+            </div>
+
+            <div class="profile-actions">
+                <a id="profileMenuBtn" href="#" target="_blank" class="action-btn btn-menu">عرض المنيو (القائمة)</a>
+                <a id="profileContactBtn" href="#" target="_blank" class="action-btn btn-contact">التواصل عبر الواتساب</a>
+                <a id="profileLocationBtn" href="#" target="_blank" class="action-btn btn-location">الموقع على الخريطة</a>
+            </div>
+
+            <div class="gallery-title">معرض الصور</div>
+            <div id="profileGalleryContainer" class="profile-gallery">
+                <!-- يتم تحميل صور المعرض -->
+            </div>
+        </div>
+
+        <!-- Page 5: Login Page -->
+        <div id="pageLogin" class="view-page">
+            <div class="admin-box">
+                <h3 style="margin-bottom: 15px; text-align: center;">تسجيل دخول لوحة التحكم</h3>
+                <div class="admin-form-group">
+                    <label>اسم المستخدم</label>
+                    <input type="text" id="loginUsername" placeholder="admin">
+                </div>
+                <div class="admin-form-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="loginPassword" placeholder="123456">
+                </div>
+                <button class="admin-btn" onclick="window.performAdminLogin()">دخول</button>
+            </div>
+        </div>
+
+        <!-- Page 6: Admin Dashboard -->
+        <div id="pageAdmin" class="view-page">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3>لوحة التحكم</h3>
+                <button class="admin-btn admin-btn-logout" style="width: auto; padding: 5px 10px;" onclick="window.logoutAdmin()">خروج</button>
+            </div>
+
+            <!-- Category Form -->
+            <div class="admin-box">
+                <h4 id="categoryFormTitle">إضافة / تعديل قسم</h4>
+                <input type="hidden" id="editCatDocId">
+                
+                <div class="admin-form-group">
+                    <label>اسم القسم (بالعربي)</label>
+                    <input type="text" id="adminCatAr">
+                </div>
+                <div class="admin-form-group">
+                    <label>اسم القسم (بالإنجليزي)</label>
+                    <input type="text" id="adminCatEn">
+                </div>
+                <div class="admin-form-group">
+                    <label>رابط صورة القسم (URL)</label>
+                    <input type="text" id="adminCatImg" placeholder="https://...">
+                </div>
+                <div class="admin-form-group">
+                    <label>أو اختر صورة من جهازك:</label>
+                    <input type="file" id="adminCatFileInput" accept="image/*">
+                </div>
+
+                <div id="catUploadStatus" class="upload-status"></div>
+                <button id="saveCatBtn" class="admin-btn" onclick="window.saveCategoryToFirebase()">حفظ القسم</button>
+            </div>
+
+            <!-- Manage Categories List -->
+            <div class="admin-box">
+                <h4>إدارة الأقسام الحالية</h4>
+                <div id="adminManageCategoriesContainer"></div>
+            </div>
+
+            <!-- Restaurant Form -->
+            <div class="admin-box">
+                <h4 id="formTitle">إضافة مطعم جديد</h4>
+                <input type="hidden" id="editDocId">
+
+                <div class="admin-form-group">
+                    <label>القسم</label>
+                    <select id="adminCategory">
+                        <option value="">اختر القسم...</option>
+                    </select>
+                </div>
+                <div class="admin-form-group">
+                    <label>اسم المطعم</label>
+                    <input type="text" id="adminName">
+                </div>
+                <div class="admin-form-group">
+                    <label>الوصف</label>
+                    <input type="text" id="adminDesc">
+                </div>
+                <div class="admin-form-group">
+                    <label>رابط الشعار (URL)</label>
+                    <input type="text" id="adminLogo" placeholder="https://...">
+                </div>
+                <div class="admin-form-group">
+                    <label>أو رفع الشعار من الجهاز:</label>
+                    <input type="file" id="adminLogoFileInput" accept="image/*">
+                </div>
+                <div class="admin-form-group">
+                    <label>روابط المعرض (مفصولة بـ فاصلة ,)</label>
+                    <input type="text" id="adminGallery">
+                </div>
+                <div class="admin-form-group">
+                    <label>أو رفع صور للمعرض من الجهاز:</label>
+                    <input type="file" id="adminGalleryFilesInput" accept="image/*" multiple>
+                </div>
+                <div class="admin-form-group">
+                    <label>رقم الهاتف / الواتساب (مع الرمز الدولي)</label>
+                    <input type="text" id="adminPhone" placeholder="966500000000">
+                </div>
+                <div class="admin-form-group">
+                    <label>رابط المنيو الإلكتروني</label>
+                    <input type="text" id="adminMenu">
+                </div>
+                <div class="admin-form-group">
+                    <label>رابط خريطة الملاحة</label>
+                    <input type="text" id="adminMap">
+                </div>
+
+                <div id="restUploadStatus" class="upload-status"></div>
+                <button id="saveRestBtn" class="admin-btn" onclick="window.saveRestaurantToFirebase()">حفظ المطعم</button>
+            </div>
+
+            <!-- Manage Restaurants List -->
+            <div class="admin-box">
+                <h4>إدارة المطاعم الحالية</h4>
+                <div id="adminManageListContainer"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer" onclick="window.checkAdminAccess()">
+            &copy; جميع الحقوق محفوظة - لوحة التحكم
+        </footer>
+
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/" target="_blank" class="floating-whatsapp">
+            <svg viewBox="0 0 32 32">
+                <path d="M16 2a13 13 0 0 0-11.26 19.5L3 29l7.71-1.68A13 13 0 1 0 16 2zm0 23.8a10.74 10.74 0 0 1-5.48-1.5l-.39-.23-4.08.89.91-3.95-.26-.41A10.78 10.78 0 1 1 16 25.8z"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Script Import -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
