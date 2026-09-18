@@ -351,3 +351,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveRestBtn = document.querySelectorAll('#pageAdmin .admin-btn')[2];
     if (saveRestBtn) bindClick(saveRestBtn, () => saveRestaurantToFirebase());
 });
+window.performAdminLogin = performAdminLogin;
