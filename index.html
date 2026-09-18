@@ -234,11 +234,10 @@
         <svg viewBox="0 0 24 24"><path d="M12.031 0C5.39 0 0 5.39 0 12.031c0 2.122.553 4.195 1.607 6.013L0 24l6.147-1.612a11.97 11.97 0 005.884 1.533h.005c6.64 0 12.03-5.39 12.03-12.031C24.066 5.39 18.671 0 12.031 0zm0 22.028h-.004c-1.8 0-3.564-.484-5.112-1.403l-.367-.218-3.799.996 1.014-3.702-.24-.381A9.972 9.972 0 012.036 12.03c0-5.511 4.484-9.995 9.995-9.995 5.511 0 9.995 4.484 9.995 9.995 0 5.511-4.484 9.998-9.995 9.998z"/></svg>
     </a>
 
-    <!-- Footer في الأسفل دائماً مع رابط صفحة الأدمن -->
-    <footer class="app-footer" onclick="checkAdminAccess()" style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; padding: 12px 10px; font-size: 11px; color: #666; background: #ffffff; cursor: pointer; border-top: 1px solid #eee; z-index: 1000;">
-        Shu Badna Notlob 2026 © جميع الحقوق محفوظة
-    </footer>
-
+   <!-- Footer يدعم الضغط على الكمبيوتر واللمس على جميع الهواتف -->
+<footer class="app-footer" onclick="checkAdminAccess()" ontouchstart="checkAdminAccess()" style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; padding: 15px 10px; font-size: 11px; color: #666; background: #ffffff; cursor: pointer; border-top: 1px solid #eee; z-index: 99999; -webkit-tap-highlight-color: transparent;">
+    Shu Badna Notlob 2026 © جميع الحقوق محفوظة
+</footer>
 </div>
 
 <script type="module" src="script.js?v=2"></script>
