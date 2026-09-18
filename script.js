@@ -76,14 +76,18 @@ function performAdminLogin() {
     const userInput = document.getElementById('loginUsername') || document.getElementById('loginEmail');
     const passInput = document.getElementById('loginPassword');
 
-    // اكتب هنا أي أحرف وأرقام تريدها بالضبط (مثال: Admin2026#)
+    // ضع اسم المستخدم وكلمة المرور بين التنصيص
     const correctUsername = "admin";
     const correctPassword = "admin70"; 
 
+    // جلب القيم وتنظيفها من أي مسافات زائدة في البداية أو النهاية
     const enterUser = userInput ? userInput.value.trim() : '';
-    const enterPass = passInput ? passInput.value.trim() : ''; // استخدام trim لـ حظر المساحات الفارغة بالخطأ
+    const enterPass = passInput ? passInput.value.trim() : '';
 
-    if (enterUser === correctUsername && enterPass === correctPassword) {
+    // طباعة القيم في الـ Console للتأكد منها أثناء التجربة
+    console.log("المدخلات:", enterUser, enterPass);
+
+    if (enterUser.toLowerCase() === correctUsername.toLowerCase() && enterPass === correctPassword) {
         navigateTo('pageAdmin');
         loadAdminCategories();
         loadAdminRestaurants();
