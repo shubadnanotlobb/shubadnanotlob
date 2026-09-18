@@ -76,12 +76,12 @@ function performAdminLogin() {
     const userInput = document.getElementById('loginUsername') || document.getElementById('loginEmail');
     const passInput = document.getElementById('loginPassword');
 
-    // حدد اسم المستخدم وكلمة المرور الجديدة هنا:
-    const correctUsername = "admin";    // <-- ضع اسم المستخدم الذي تريده هنا
-    const correctPassword = "70725";   // <-- ضع كلمة المرور التي تريدها هنا
+    // اكتب هنا أي أحرف وأرقام تريدها بالضبط (مثال: Admin2026#)
+    const correctUsername = "admin";
+    const correctPassword = "admin70"; 
 
     const enterUser = userInput ? userInput.value.trim() : '';
-    const enterPass = passInput ? passInput.value : '';
+    const enterPass = passInput ? passInput.value.trim() : ''; // استخدام trim لـ حظر المساحات الفارغة بالخطأ
 
     if (enterUser === correctUsername && enterPass === correctPassword) {
         navigateTo('pageAdmin');
