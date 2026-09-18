@@ -50,7 +50,7 @@ function navigateTo(pageId, pushToHistory = true) {
     } else {
         if (logoSection) logoSection.style.display = 'none';
         if (catHeader) catHeader.style.display = 'flex';
-        if (backBtn) backBtn.style.display = 'flex';
+        if (backBtn) backBtn.style.display = 'inline-flex';
     }
 }
 
