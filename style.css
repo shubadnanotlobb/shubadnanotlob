@@ -475,3 +475,7 @@ body {
     height: 28px;
     fill: white;
 }
+/* إزالة أي نقاط أو دوائر سوداء غير مرغوب فيها */
+.view-page::before, .view-page::after {
+    display: none !important;
+}
