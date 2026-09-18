@@ -93,7 +93,7 @@ function performAdminLogin() {
         alert("اسم المستخدم أو كلمة المرور غير صحيحة!");
     }
 }
-
+window.performAdminLogin = performAdminLogin;
 function logoutAdmin() {
     navigateTo('pageHome');
 }
