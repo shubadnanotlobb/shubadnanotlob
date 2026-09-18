@@ -78,7 +78,7 @@ function performAdminLogin() {
 
     // اسم المستخدم وكلمة المرور الجديدة
     const correctUsername = "admin";
-    const correctPassword = "admin70"; 
+    const correctPassword = "1234567"; 
 
     const enterUser = userInput ? userInput.value.trim() : '';
     const enterPass = passInput ? passInput.value.trim() : '';
