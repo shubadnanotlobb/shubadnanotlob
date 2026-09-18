@@ -73,14 +73,24 @@ function checkAdminAccess() {
 }
 
 function performAdminLogin() {
+    const userInput = document.getElementById('loginUsername') || document.getElementById('loginEmail');
     const passInput = document.getElementById('loginPassword');
-    if (passInput && passInput.value === "123456") {
+
+    // حدد اسم المستخدم وكلمة المرور الجديدة هنا:
+    const correctUsername = "admin";    // <-- ضع اسم المستخدم الذي تريده هنا
+    const correctPassword = "123456";   // <-- ضع كلمة المرور التي تريدها هنا
+
+    const enterUser = userInput ? userInput.value.trim() : '';
+    const enterPass = passInput ? passInput.value : '';
+
+    if (enterUser === correctUsername && enterPass === correctPassword) {
         navigateTo('pageAdmin');
         loadAdminCategories();
         loadAdminRestaurants();
-        passInput.value = '';
+        if (userInput) userInput.value = '';
+        if (passInput) passInput.value = '';
     } else {
-        alert("كلمة المرور غير صحيحة!");
+        alert("اسم المستخدم أو كلمة المرور غير صحيحة!");
     }
 }
 
