@@ -422,3 +422,18 @@ window.filterCategories = filterCategories;
 window.filterRestaurants = filterRestaurants;
 window.openRestaurantsByCategory = openRestaurantsByCategory;
 window.openRestaurantProfile = openRestaurantProfile;
+/* إلغاء أي طبقات شفافة وهمية قد تحجب اللمس عن باقي الشاشة */
+.app-container {
+    pointer-events: auto !important;
+}
+
+/* التأكد من أن الصفحات قابلة للنقر والتفاعل */
+.view-page {
+    pointer-events: auto !important;
+}
+
+/* منع الـ Footer من تغطية المحتوى وحجب اللمس */
+.app-footer {
+    pointer-events: auto !important;
+    position: relative !important;
+}
