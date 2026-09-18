@@ -362,3 +362,20 @@ document.addEventListener('DOMContentLoaded', () => {
     listenToCategories();
     listenToRestaurants();
 });
+// تصدير كل الدوال لنطاق المتصفح العام (Window) لتعمل كل الكبسات
+Object.assign(window, {
+    saveCategoryToFirebase,
+    resetCategoryForm,
+    editCategory,
+    deleteCategoryFromFirebase,
+    saveRestaurantToFirebase,
+    resetAdminForm,
+    deleteRestaurantFromFirebase,
+    checkAdminAccess,
+    performAdminLogin,
+    logoutAdmin,
+    showPage,
+    goBack,
+    openCategories,
+    openRestaurantsByCategory
+});
