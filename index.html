@@ -10,6 +10,38 @@
         .view-page.active { display: block !important; }
         .region-card-link { display: block; text-decoration: none; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
         .footer-link { display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; padding: 15px 0; -webkit-tap-highlight-color: transparent; }
+
+        /* Firebase image upload */
+        .image-upload-preview {
+            display: none;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-top: 8px;
+            border: 2px solid #008080;
+        }
+
+        .gallery-upload-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .gallery-upload-preview img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .upload-help-text {
+            font-size: 10px;
+            color: #777;
+            margin-top: 4px;
+        }
     </style>
 </head>
 <body style="padding-bottom: 60px;">
@@ -121,91 +153,192 @@
 
     <!-- PAGE 6: ADMIN DASHBOARD -->
     <div class="view-page" id="pageAdmin">
+
         <div class="admin-box glass-panel">
             <h3 id="categoryFormTitle" style="color: #008080; font-size: 15px; margin-bottom: 12px;">Add / Edit Category</h3>
             <input type="hidden" id="editCatDocId">
+
             <div class="admin-form-group">
                 <label>Category Name (Arabic)</label>
                 <input type="text" id="adminCatAr" placeholder="مثال: سناك ومأكولات سريعة">
             </div>
+
             <div class="admin-form-group">
                 <label>Category Name (English)</label>
                 <input type="text" id="adminCatEn" placeholder="e.g. Snack & Fast Food">
             </div>
+
             <div class="admin-form-group">
                 <label>Category Image URL</label>
                 <input type="text" id="adminCatImg" placeholder="https://images.unsplash.com/...">
             </div>
+
             <div style="display: flex; gap: 8px;">
                 <button class="admin-btn" type="button" onclick="window.saveCategoryToFirebase()">Save Category</button>
                 <button class="admin-btn" type="button" style="background: #777;" onclick="window.resetCategoryForm()">Reset</button>
             </div>
+
             <h4 style="color: #008080; font-size: 13px; margin-top: 15px; margin-bottom: 10px;">Active Categories List</h4>
             <div id="adminManageCategoriesContainer"></div>
         </div>
 
+
         <div class="admin-box glass-panel">
+
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                 <h3 id="formTitle" style="color: #008080; font-size: 15px;">Add New Restaurant</h3>
-                <button class="admin-btn admin-btn-logout" type="button" style="width: auto; padding: 6px 12px; font-size: 11px; margin-top: 0;" onclick="window.logoutAdmin()">Logout</button>
+
+                <button
+                    class="admin-btn admin-btn-logout"
+                    type="button"
+                    style="width: auto; padding: 6px 12px; font-size: 11px; margin-top: 0;"
+                    onclick="window.logoutAdmin()">
+                    Logout
+                </button>
             </div>
+
             <input type="hidden" id="editDocId">
+
             <div class="admin-form-group">
                 <label>Category</label>
                 <select id="adminCategory"></select>
             </div>
+
             <div class="admin-form-group">
                 <label>Restaurant Name</label>
                 <input type="text" id="adminName" placeholder="e.g. Gorella Food Truck">
             </div>
+
             <div class="admin-form-group">
                 <label>Description / Tagline</label>
                 <input type="text" id="adminDesc" placeholder="e.g. Best Burgers in Town">
             </div>
+
+
+            <!-- RESTAURANT LOGO UPLOAD -->
             <div class="admin-form-group">
-                <label>Logo URL (Direct Image Link)</label>
-                <input type="text" id="adminLogo" placeholder="https://lh3.googleusercontent.com/d/...">
+
+                <label>Restaurant Logo</label>
+
+                <input
+                    type="file"
+                    id="adminLogoFile"
+                    accept="image/*"
+                >
+
+                <div class="upload-help-text">
+                    اختر صورة من جهازك
+                </div>
+
+                <img
+                    id="logoPreview"
+                    class="image-upload-preview"
+                    alt="Logo Preview"
+                >
+
+                <!-- Keeps old URL functionality -->
+                <input
+                    type="text"
+                    id="adminLogo"
+                    placeholder="أو ضع رابط صورة مباشرة"
+                    style="margin-top: 8px;"
+                >
+
             </div>
+
+
+            <!-- RESTAURANT GALLERY UPLOAD -->
             <div class="admin-form-group">
-                <label>Gallery Images (URLs separated by commas)</label>
-                <input type="text" id="adminGallery" placeholder="https://img1.jpg, https://img2.jpg">
+
+                <label>Gallery Images</label>
+
+                <input
+                    type="file"
+                    id="adminGalleryFiles"
+                    accept="image/*"
+                    multiple
+                >
+
+                <div class="upload-help-text">
+                    يمكنك اختيار عدة صور من جهازك
+                </div>
+
+                <div
+                    id="galleryPreview"
+                    class="gallery-upload-preview">
+                </div>
+
+                <!-- Keeps old URL functionality -->
+                <input
+                    type="text"
+                    id="adminGallery"
+                    placeholder="أو ضع روابط الصور مفصولة بفواصل"
+                    style="margin-top: 8px;"
+                >
+
             </div>
+
+
             <div class="admin-form-group">
                 <label>WhatsApp Number (without +)</label>
                 <input type="text" id="adminPhone" placeholder="96170725668">
             </div>
+
             <div class="admin-form-group">
                 <label>Menu Link (PDF or URL)</label>
                 <input type="text" id="adminMenu" placeholder="https://...">
             </div>
+
             <div class="admin-form-group">
                 <label>Google Maps Location Link</label>
                 <input type="text" id="adminMap" placeholder="https://maps.app.goo.gl/...">
             </div>
+
             <div style="display: flex; gap: 8px;">
-                <button class="admin-btn" type="button" onclick="window.saveRestaurantToFirebase()">Save Restaurant</button>
-                <button class="admin-btn" type="button" style="background: #777;" onclick="window.resetAdminForm()">Reset</button>
+                <button
+                    class="admin-btn"
+                    type="button"
+                    onclick="window.saveRestaurantToFirebase()">
+                    Save Restaurant
+                </button>
+
+                <button
+                    class="admin-btn"
+                    type="button"
+                    style="background: #777;"
+                    onclick="window.resetAdminForm()">
+                    Reset
+                </button>
             </div>
+
         </div>
+
 
         <div class="admin-box glass-panel">
             <h4 style="color: #008080; font-size: 13px; margin-bottom: 10px;">Active Firebase Restaurants</h4>
             <div id="adminManageListContainer"></div>
         </div>
+
     </div>
+
 
     <!-- Floating WhatsApp -->
     <a href="https://wa.me/96170725668" target="_blank" class="floating-whatsapp" aria-label="Contact WhatsApp">
-        <svg viewBox="0 0 24 24"><path d="M12.031 0C5.39 0 0 5.39 0 12.031c0 2.122.553 4.195 1.607 6.013L0 24l6.147-1.612a11.97 11.97 0 005.884 1.533h.005c6.64 0 12.03-5.39 12.03-12.031C24.066 5.39 18.671 0 12.031 0zm0 22.028h-.004c-1.8 0-3.564-.484-5.112-1.403l-.367-.218-3.799.996 1.014-3.702-.24-.381A9.972 9.972 0 012.036 12.03c0-5.511 4.484-9.995 9.995-9.995 5.511 0 9.995 4.484 9.995 9.995 0 5.511-4.484 9.998-9.995 9.998z"/></svg>
+        <svg viewBox="0 0 24 24">
+            <path d="M12.031 0C5.39 0 0 5.39 0 12.031c0 2.122.553 4.195 1.607 6.013L0 24l6.147-1.612a11.97 11.97 0 005.884 1.533h.005c6.64 0 12.03-5.39 12.03-12.031C24.066 5.39 18.671 0 12.031 0zm0 22.028h-.004c-1.8 0-3.564-.484-5.112-1.403l-.367-.218-3.799.996 1.014-3.702-.24-.381A9.972 9.972 0 012.036 12.03c0-5.511 4.484-9.995 9.995-9.995 5.511 0 9.995 4.484 9.995 9.995 0 5.511-4.484 9.998-9.995 9.998z"/>
+        </svg>
     </a>
+
 
     <footer class="app-footer" style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; font-size: 11px; color: #666; background: #ffffff; border-top: 1px solid #eee; z-index: 99999;">
         <a href="javascript:void(0);" onclick="window.checkAdminAccess()" class="footer-link">
             Shu Badna Notlob 2026 © جميع الحقوق محفوظة
         </a>
     </footer>
+
 </div>
 
 <script type="module" src="script.js"></script>
+
 </body>
 </html>
