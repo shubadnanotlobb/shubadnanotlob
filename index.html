@@ -6,6 +6,92 @@
     <title>Shu Badna Notlob - شو بدنا نطلب</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* تنسيق عام لبطاقات الأقسام والتحكم بحجم الصور داخل الكادر */
+.category-card {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.category-card:hover {
+  transform: translateY(-3px);
+}
+
+.category-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover; /* لملء الكادر بقص متناسق بدون أي تشويه */
+  object-position: center;
+  display: block;
+}
+
+.category-title {
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* تنسيق بطاقات المطاعم والصور الخلفية والشعارات */
+.restaurant-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.restaurant-bg-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.restaurant-logo-badge {
+  position: absolute;
+  bottom: 50px;
+  right: 15px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* معاينة الصور في لوحة التحكم (Admin Previews) */
+#catPreview, #bgPreview, #logoPreview {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-top: 5px;
+  display: none;
+}
+
+#galleryPreview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+#galleryPreview img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
         .view-page { display: none; }
         .view-page.active { display: block !important; }
         .region-card-link { display: block; text-decoration: none; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
