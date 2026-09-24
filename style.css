@@ -353,8 +353,8 @@ body {
     position: absolute;
     top: 12px;
     right: 12px;
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #ffffff;
@@ -362,6 +362,7 @@ body {
     z-index: 3;
     background: #fff;
 }
+
 
 /* معلومات المطعم في الأسفل فوق الخلفية */
 .restaurant-info {
