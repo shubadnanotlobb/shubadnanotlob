@@ -350,10 +350,10 @@ body {
 /* لوجو المطعم في الزاوية اليمنى العليا */
 .restaurant-logo-badge {
     position: absolute;
-    top: 18px;
+    top: 12px;
     right: 12px;
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #ffffff;
